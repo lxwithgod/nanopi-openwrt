@@ -7,7 +7,7 @@ on:
     paths:
       - '.github/workflows/m4_lean.yml'
   schedule:
-    - cron: '10 09 * * *'
+    - cron: '10 0 * * *'
 
 jobs:
 
@@ -156,21 +156,23 @@ jobs:
           mkdir -p ./artifact/
           mv friendlywrt-rk3399/out/*img* ./artifact/
           cp friendlywrt-rk3399/friendlywrt/.config ./artifact/
+          emmc_path="./artifact/FriendlyWrt_$(date +%Y%m%d)_NanoPi-M4_arm64_eflasher.img.gz"
+          emmc_name="FriendlyWrt_$(date +%Y%m%d)_NanoPi-M4_arm64_eflasher.img.gz"
+          file_name="FriendlyWrt_$(date +%Y%m%d)_NanoPi-M4_arm64"
           release_tag="M4-Lean-$(date +%Y-%m-%d)"
           sd_path="./artifact/FriendlyWrt_$(date +%Y%m%d)_NanoPi-M4_arm64_sd.img.gz"
           sd_name="FriendlyWrt_$(date +%Y%m%d)_NanoPi-M4_arm64_sd.img.gz"
-          emmc_path="./artifact/FriendlyWrt_$(date +%Y%m%d)_NanoPi-M4_arm64_eflasher.img.gz"
-          emmc_name="FriendlyWrt_$(date +%Y%m%d)_NanoPi-M4_arm64_eflasher.img.gz"
+          echo "##[set-output name=emmc_path;]$emmc_path"
+          echo "##[set-output name=emmc_name;]$emmc_name"         
+          echo "##[set-output name=file_name;]$file_name"
           echo "##[set-output name=release_tag;]$release_tag"
           echo "##[set-output name=sd_path;]$sd_path"
           echo "##[set-output name=sd_name;]$sd_name"
-          echo "##[set-output name=emmc_path;]$emmc_path"
-          echo "##[set-output name=emmc_name;]$emmc_name"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: FriendlyWrt_NanoPi-M4
+          name: ${{ steps.assemble_artifact.outputs.file_name }}
           path: ./artifact/
 
       - name: Create Release
