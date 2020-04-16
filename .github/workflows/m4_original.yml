@@ -1,11 +1,11 @@
 name: m4 original Build 原版friendlywrt
 
 on:
-  push:
-    branches: 
-      - master
-    paths: 
-      - '.github/workflows/m4_original.yml'
+# push:
+#  branches: 
+#    - master
+#  paths: 
+#    - '.github/workflows/m4_original.yml'
 
 jobs:
 
