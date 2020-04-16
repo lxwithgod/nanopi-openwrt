@@ -6,6 +6,9 @@ on:
       - master
     paths:
       - '.github/workflows/m4_lean.yml'
+  schedule:
+    - cron: '10 0 * * *'
+
 jobs:
 
   build:
