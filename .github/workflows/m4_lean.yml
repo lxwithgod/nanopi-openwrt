@@ -1,13 +1,6 @@
 name: m4 Lean版openwrt
 
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - '.github/workflows/m4_lean.yml'
-  schedule:
-    - cron: '10 0 * * *'
+on:  [push]
 
 jobs:
 
