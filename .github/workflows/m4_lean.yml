@@ -1,5 +1,4 @@
 name: m4 Lean版openwrt
-
 on:  [push]
 
 jobs:
